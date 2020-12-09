@@ -30,7 +30,10 @@ namespace AspCoreOpenBBSMiddleware
                         options.UseInMemoryDatabase(databaseName: "InMemoryDb")
 #endif
                         )
-                    .AddScoped<BoardRepository>();
+                    .AddScoped<ArticalRepository>()
+                    .AddScoped<BoardRepository>()
+                    .AddScoped<UserRepository>()
+                    .AddScoped<CommentRepository>();
 
             // Register the Swagger services
             services.AddSwaggerDocument(config =>

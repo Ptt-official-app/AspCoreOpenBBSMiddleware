@@ -31,7 +31,7 @@ namespace ApplicationCore
         public int OnlineCount { get; set; }
 
         [JsonProperty("moderators")]
-        public virtual List<Moderator> Moderators { get; set; }
+        public virtual List<User> Moderators { get; set; }
 
         [JsonProperty("read")]
         public bool Read { get; set; }
@@ -75,6 +75,16 @@ namespace ApplicationCore
 
         [JsonProperty("postLimitBadpost")]
         public int PostLimitBadpost { get; set; }
+
+        /// <summary>
+        /// 貼文者
+        /// </summary>
+        public int PosterId { get; set; }
+
+        [JsonIgnore]
+        public bool IsPopular { get; set; }
+
+        public virtual List<Artical> Articals { get; set; }
     }
 
     public class Moderator

@@ -3,9 +3,9 @@ using Infrastructure.Repository.Base;
 
 namespace Infrastructure.Repository
 {
-    public class BoardRepository : EFRepository<Board>
+    public class UserRepository : EFRepository<User>
     {
-        public BoardRepository(MWDBContext context) : base(context)
+        public UserRepository(MWDBContext context) : base(context)
         {
         }
     }
