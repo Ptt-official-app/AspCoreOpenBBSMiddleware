@@ -29,7 +29,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
         public int OnlineCount { get; set; }
 
         [JsonProperty("moderators")]
-        public virtual IEnumerable<Moderator> Moderators { get; set; }
+        public virtual IEnumerable<UserDTO> Moderators { get; set; }
 
         [JsonProperty("read")]
         public bool Read { get; set; }
@@ -37,23 +37,6 @@ namespace AspCoreOpenBBSMiddleware.DTO
 
     public static class BoardDTOExtension
     {
-        public static Moderator ToModerator(this User source)
-        {
-            if (source == null) return null;
-
-            return new Moderator
-            {
-                Id = source.Id,
-                UserId = source.UserId,
-                UserSN = source.UserSN
-            };
-        }
-
-        public static IEnumerable<Moderator> ToModerator(this IEnumerable<User> source)
-        {
-            return source?.Select(b => b.ToModerator());
-        }
-
         public static BoardDTO ToDTO(this Board source)
         {
             if (source == null) return null;
@@ -68,7 +51,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
                 OnlineCount = source.OnlineCount,
                 Read = source.Read,
                 Type = source.Type,
-                Moderators = source.Moderators.ToModerator()
+                Moderators = source.Moderators.ToDTO()
             };
         }
 

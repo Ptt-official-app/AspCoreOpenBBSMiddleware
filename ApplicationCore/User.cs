@@ -7,6 +7,7 @@ namespace ApplicationCore
     public class User
     {
         [Key]
+        [JsonIgnore]
         public int Id { get; set; }
 
         [JsonProperty("usn")]

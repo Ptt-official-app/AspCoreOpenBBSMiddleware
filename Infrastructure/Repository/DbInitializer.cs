@@ -10,10 +10,10 @@ namespace Infrastructure.Repository
             context.Database.EnsureCreated();
 
             #region User
-            User user = new User
+            User user_teemo = new User
             {
                 Id = 1,
-                UserSN = "238457238547038",
+                UserSN = "sn-teemo",
                 UserId = "teemo",
                 NickName = "提摩",
                 RealName = "真 . 提摩",
@@ -43,7 +43,40 @@ namespace Infrastructure.Repository
                 Mode = 1,
                 Alerts = 0,
             };
-            context.Users.Add(user);
+            User user_okcool = new User
+            {
+                Id = 2,
+                UserSN = "sn-okcool",
+                UserId = "okcool",
+                NickName = "okcool",
+                RealName = "真 . okcool",
+                NumberOfLoginDays = 1,
+                NumberOfPosts = 1000,
+                Money = 0,
+                Email = "teemo@ptt.cc",
+                Address = "台北市天龍區天龍路87號",
+                Over18 = true,
+                FirstLogin = 1234567890,
+                LastLogin = 1234567890,
+                LastSeen = 1234567890,
+                LastAct = 1234567890,
+                LastSong = 1234567890,
+                Signature = 0,
+                Vlcount = 0,
+                Badpost = 0,
+                TimeRemoveBadPost = 1234567890,
+                TimeViolateLaw = 1234567890,
+                MyAngel = "馬鸚酒",
+                TimeSetAngel = 1234567890,
+                TimePlayAngel = 1234567890,
+                FromCountry = "台灣",
+                FromIP = "127.0.0.1",
+                NumberOfFriends = 0,
+                Invisible = false,
+                Mode = 1,
+                Alerts = 0,
+            };
+            context.Users.Add(user_teemo);
             context.SaveChanges();
             #endregion
             #region Artical
@@ -53,9 +86,9 @@ namespace Infrastructure.Repository
                 BoardSN = "sn-undefined",
                 BoardId = "undefined",
                 ArticalId = "aid0",
-                AuthorSN = user.UserSN,
-                AuthorId = user.Id,
-                Author = user,
+                AuthorSN = user_teemo.UserSN,
+                AuthorId = user_teemo.Id,
+                Author = user_teemo,
                 PostTime = 1234567891,
                 UpdateTime = 1234567891,
                 Date = "2009-02-14",
@@ -74,9 +107,9 @@ namespace Infrastructure.Repository
                 BoardSN = "sn-undefined???",
                 BoardId = "undefined???",
                 ArticalId = "aid2",
-                AuthorSN = user.UserSN,
-                AuthorId = user.Id,
-                Author = user,
+                AuthorSN = user_teemo.UserSN,
+                AuthorId = user_teemo.Id,
+                Author = user_teemo,
                 PostTime = 1234567891,
                 UpdateTime = 1234567891,
                 Date = "2009-02-14",
@@ -105,7 +138,7 @@ namespace Infrastructure.Repository
                 Type = 2,
                 Category = "新手",
                 OnlineCount = 100,
-                Moderators = new List<User>() { user },
+                Moderators = new List<User>() { user_teemo, user_okcool },
                 Read = false,
                 VoteLimitLogins = 10,
                 BoardUpdate = 1234567890,
@@ -120,7 +153,8 @@ namespace Infrastructure.Repository
                 FastRecommendPause = 60,
                 VoteLimitBadpost = 15,
                 PostLimitBadpost = 13,
-                Articals = new List<Artical>() { artical1, artical2}
+                Articals = new List<Artical>() { artical1, artical2},
+                IsPopular = true
             };
             context.Boards.Add(board);
             context.SaveChanges();
@@ -132,9 +166,9 @@ namespace Infrastructure.Repository
                 BelongsBoard = board,
                 BoardSN = board.BoardSN,
                 BoardId = board.Id,
-                Author = user,
-                AutherSN = user.UserSN,
-                AutherId = user.Id,
+                Author = user_teemo,
+                AutherSN = user_teemo.UserSN,
+                AutherId = user_teemo.Id,
                 CommentSN = "sn-cid3",
                 CommentId = "cid3",
                 PostTime = 1234567891,
@@ -149,9 +183,9 @@ namespace Infrastructure.Repository
                 BelongsBoard = board,
                 BoardSN = board.BoardSN,
                 BoardId = board.Id,
-                Author = user,
-                AutherSN = user.UserSN,
-                AutherId = user.Id,
+                Author = user_teemo,
+                AutherSN = user_teemo.UserSN,
+                AutherId = user_teemo.Id,
                 CommentSN = "sn-cid3",
                 CommentId = "cid3",
                 PostTime = 1234567891,
@@ -163,9 +197,9 @@ namespace Infrastructure.Repository
             context.SaveChanges();
             #endregion
 
-            user.Articals = new List<Artical>() { artical1, artical2 };
-            user.Favorites = new List<Board>() { board };
-            user.Comments = new List<Comment>() { cmt1, cmt2 };
+            user_teemo.Articals = new List<Artical>() { artical1, artical2 };
+            user_teemo.Favorites = new List<Board>() { board };
+            user_teemo.Comments = new List<Comment>() { cmt1, cmt2 };
         }
     }
 }

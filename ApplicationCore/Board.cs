@@ -36,7 +36,6 @@ namespace ApplicationCore
         [JsonProperty("read")]
         public bool Read { get; set; }
 
-        //------------------
         [JsonProperty("voteLimitLogins")]
         public int VoteLimitLogins { get; set; }
 
@@ -76,27 +75,9 @@ namespace ApplicationCore
         [JsonProperty("postLimitBadpost")]
         public int PostLimitBadpost { get; set; }
 
-        /// <summary>
-        /// 貼文者
-        /// </summary>
-        public int PosterId { get; set; }
-
         [JsonIgnore]
         public bool IsPopular { get; set; }
 
         public virtual List<Artical> Articals { get; set; }
-    }
-
-    public class Moderator
-    {
-        [Key]
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("usn")]
-        public string UserSN { get; set; }
-
-        [JsonProperty("uid")]
-        public string UserId { get; set; }
     }
 }
