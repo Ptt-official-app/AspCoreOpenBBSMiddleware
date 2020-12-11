@@ -46,7 +46,7 @@ namespace AspCoreOpenBBSMiddleware.Controllers
                                        .ToDTO();
             return new BoardListResult
             {
-                List = list.AsEnumerable(),
+                List = list,
                 Next = next
             };
         }

@@ -7,6 +7,7 @@ namespace ApplicationCore
     public class Board
     {
         [Key]
+        [JsonIgnore]
         public int Id { get; set; }
 
         [JsonProperty("bsn")]

@@ -1,7 +1,7 @@
 ﻿using ApplicationCore;
 using System.Collections.Generic;
 
-namespace Infrastructure.Repository
+namespace Infrastructure
 {
     public static class DbInitializer
     {

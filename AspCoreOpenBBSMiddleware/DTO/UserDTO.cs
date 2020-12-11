@@ -29,7 +29,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
 
         public static IEnumerable<UserDTO> ToDTO(this IEnumerable<User> source)
         {
-            return source?.Select(b => b.ToDTO());
+            return source?.Select(u => u.ToDTO());
         }
     }
 }

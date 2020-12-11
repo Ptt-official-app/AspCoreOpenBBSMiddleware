@@ -1,11 +1,12 @@
 using AspCoreOpenBBSMiddleware.Controllers;
+using Infrastructure;
 using Infrastructure.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TestSupport.EfHelpers;
 
-namespace UnitTestProject
+namespace UnitTest
 {
     [TestClass]
     public class BoardTest
@@ -35,11 +36,11 @@ namespace UnitTestProject
         public void Board_GetAll()
         {
             var result = _boardController.GetAll(isPopular: true);
-            if (null == result.Value) Assert.Fail("¦^¶ÇµL¤º®e");
+            if (null == result.Value) Assert.Fail("å›å‚³ç„¡å…§å®¹");
 
             JObject jobject = JObject.FromObject(result.Value);
 
-            string correctAnswer = @"{""list"":[{""bsn"":""sn-PttNewhand"",""bid"":""PttNewhand"",""title"":""§å½ğ½ğ·s¤â«ÈªA¤¤¤ß¡K ¡²«DtestªO"",""flag"":1,""boardType"":2,""cat"":""·s¤â"",""onlineCount"":100,""moderators"":[{""usn"":""sn-teemo"",""uid"":""teemo""},{""usn"":""sn-okcool"",""uid"":""okcool""}],""read"":false}],""nextBID"":""""}";
+            string correctAnswer = @"{""list"":[{""bsn"":""sn-PttNewhand"",""bid"":""PttNewhand"",""title"":""æ‰¹è¸¢è¸¢æ–°æ‰‹å®¢æœä¸­å¿ƒâ€¦ ã€ƒétestæ¿"",""flag"":1,""boardType"":2,""cat"":""æ–°æ‰‹"",""onlineCount"":100,""moderators"":[{""usn"":""sn-teemo"",""uid"":""teemo""},{""usn"":""sn-okcool"",""uid"":""okcool""}],""read"":false}],""nextBID"":""""}";
             string answer = jobject.ToString(Formatting.None);
 
             Assert.IsTrue(answer == correctAnswer, 

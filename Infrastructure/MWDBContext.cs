@@ -1,7 +1,7 @@
 ﻿using ApplicationCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Repository
+namespace Infrastructure
 {
     public class MWDBContext : DbContext
     {

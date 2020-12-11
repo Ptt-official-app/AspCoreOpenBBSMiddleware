@@ -1,3 +1,4 @@
+using Infrastructure;
 using Infrastructure.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
