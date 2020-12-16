@@ -23,7 +23,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
             return new UserDTO
             {
                 UserId = source.UserId,
-                UserSN = source.UserSN
+                UserSN = source.Name
             };
         }
 

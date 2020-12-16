@@ -13,7 +13,7 @@ namespace Infrastructure
             User user_teemo = new User
             {
                 Id = 1,
-                UserSN = "sn-teemo",
+                Name = "sn-teemo",
                 UserId = "teemo",
                 NickName = "提摩",
                 RealName = "真 . 提摩",
@@ -46,7 +46,7 @@ namespace Infrastructure
             User user_okcool = new User
             {
                 Id = 2,
-                UserSN = "sn-okcool",
+                Name = "sn-okcool",
                 UserId = "okcool",
                 NickName = "okcool",
                 RealName = "真 . okcool",
@@ -86,7 +86,7 @@ namespace Infrastructure
                 BoardSN = "sn-undefined",
                 BoardId = "undefined",
                 ArticalId = "aid0",
-                AuthorSN = user_teemo.UserSN,
+                AuthorSN = user_teemo.Name,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
                 PostTime = 1234567891,
@@ -107,7 +107,7 @@ namespace Infrastructure
                 BoardSN = "sn-undefined???",
                 BoardId = "undefined???",
                 ArticalId = "aid2",
-                AuthorSN = user_teemo.UserSN,
+                AuthorSN = user_teemo.Name,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
                 PostTime = 1234567891,
@@ -167,7 +167,7 @@ namespace Infrastructure
                 BoardSN = board.BoardSN,
                 BoardId = board.Id,
                 Author = user_teemo,
-                AutherSN = user_teemo.UserSN,
+                AutherSN = user_teemo.Name,
                 AutherId = user_teemo.Id,
                 CommentSN = "sn-cid3",
                 CommentId = "cid3",
@@ -184,7 +184,7 @@ namespace Infrastructure
                 BoardSN = board.BoardSN,
                 BoardId = board.Id,
                 Author = user_teemo,
-                AutherSN = user_teemo.UserSN,
+                AutherSN = user_teemo.Name,
                 AutherId = user_teemo.Id,
                 CommentSN = "sn-cid3",
                 CommentId = "cid3",

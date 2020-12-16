@@ -18,25 +18,18 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// <summary>
         /// GetComments (取得所有公告)
         /// </summary>
-        /// <param name="beforeTime">the newest-posttime in the list</param>
-        /// <param name="ascending">升冪排序</param>
-        /// <param name="max">max number of the returned posts, less or eqeal 1000</param>
+        /// <param name="beforeTime">最晚發布時間</param>
+        /// <param name="desc">由新至舊排序</param>
+        /// <param name="max">一次取回幾筆資料，最多1000</param>
         [HttpGet()]
         public ActionResult<IEnumerable<Comment>> GetAll([FromQuery] long beforeTime = -1,
-                                                         [FromQuery] bool ascending = true,
+                                                         [FromQuery] bool desc = true,
                                                          [FromQuery] int max = 1000)
         {
             var result = from c in _commentRepository.Get()
                          where beforeTime != -1 || c.PostTime > beforeTime
                          select c;
-            if (ascending)
-            {
-                result = result.OrderBy(c => c.PostTime);
-            }
-            else
-            {
-                result = result.OrderByDescending(c => c.PostTime);
-            }
+            if (desc) result = result.OrderByDescending(c => c.PostTime);
 
             return Ok(result.Take(max));
         }

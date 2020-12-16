@@ -7,14 +7,11 @@ namespace ApplicationCore
     public class User
     {
         [Key]
-        [JsonIgnore]
+        [JsonProperty("uid")]
         public int Id { get; set; }
 
         [JsonProperty("usn")]
-        public string UserSN { get; set; }
-
-        [JsonProperty("uid")]
-        public string UserId { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("nickname")]
         public string NickName { get; set; }

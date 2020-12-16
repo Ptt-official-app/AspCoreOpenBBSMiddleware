@@ -18,26 +18,18 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// <summary>
         /// GetUser(取得所有使用者)
         /// </summary>
-        /// <param name="userID">starting user-id</param>
-        /// <param name="ascending">LastLogin 升冪排序</param>
-        /// <param name="max">max number of the returned user, less or eqeal 1000</param>
-        /// <returns></returns>
+        /// <param name="name">部分使用者名稱</param>
+        /// <param name="desc">由新至舊排序</param>
+        /// <param name="max">一次取回幾筆資料，最多1000</param>
         [HttpGet()]
-        public ActionResult<IEnumerable<User>> GetAll([FromQuery] string userID = "",
-                                                      [FromQuery] bool ascending = true,
+        public ActionResult<IEnumerable<User>> GetAll([FromQuery] string name = "",
+                                                      [FromQuery] bool desc = true,
                                                       [FromQuery] int max = 1000)
         {
             var result = from u in _userRepository.Get()
-                         where (string.IsNullOrWhiteSpace(userID) || u.UserId.Contains(userID))
+                         where (string.IsNullOrWhiteSpace(name) || u.Name.Contains(name))
                          select u;
-            if (ascending)
-            {
-                result = result.OrderBy(u => u.LastLogin);
-            }
-            else
-            {
-                result = result.OrderByDescending(a => a.LastLogin);
-            }
+            if (desc) result = result.OrderByDescending(a => a.LastLogin);
 
             return Ok(result.Take(max));
         }

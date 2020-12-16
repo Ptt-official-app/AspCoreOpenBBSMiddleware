@@ -21,18 +21,15 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// GetBoardList (取得看板清單)
         /// </summary>
         /// <param name="isPopular">是否為熱門文章；預設為 否</param>
-        ///<param name="id">starting board-id</param>
-        ///<param name="title">contains board-title</param>
-        ///<param name="max">max number of the returned boards</param>
+        /// <param name="title">部分看板標題</param>
+        /// <param name="max">一次取回幾筆資料，最多1000</param>
         [HttpGet()]
         public ActionResult<BoardListResult> GetAll([FromQuery] bool isPopular = false,
-                                                    [FromQuery] string id = "",
                                                     [FromQuery] string title = "",
                                                     [FromQuery] int max = 1000)
         {
             var list = (from b in _boardRepository.Get()
                         where b.IsPopular == isPopular
-                           && (string.IsNullOrWhiteSpace(id) || b.BoardId.StartsWith(id, StringComparison.CurrentCultureIgnoreCase))
                            && (string.IsNullOrWhiteSpace(title) || b.Title.Contains(title, StringComparison.CurrentCulture))
                         select b)
                        .Take(max)

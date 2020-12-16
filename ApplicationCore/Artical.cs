@@ -6,10 +6,8 @@ namespace ApplicationCore
     public class Artical
     {
         [Key]
-        public int Id { get; set; }
-
         [JsonProperty("aid")]
-        public string ArticalId { get; set; }
+        public int Id { get; set; }
 
         #region Board
         [JsonProperty("bsn")]

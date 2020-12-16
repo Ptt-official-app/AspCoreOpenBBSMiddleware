@@ -7,14 +7,11 @@ namespace ApplicationCore
     public class Board
     {
         [Key]
-        [JsonIgnore]
+        [JsonProperty("bid")]
         public int Id { get; set; }
 
         [JsonProperty("bsn")]
         public string BoardSN { get; set; }
-
-        [JsonProperty("bid")]
-        public string BoardId { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
