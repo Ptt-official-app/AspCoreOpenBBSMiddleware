@@ -11,7 +11,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
         public string BoardSN { get; set; }
 
         [JsonProperty("bid")]
-        public string BoardId { get; set; }
+        public int BoardId { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -43,7 +43,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
 
             return new BoardDTO
             {
-                BoardId = source.BoardId,
+                BoardId = source.Id,
                 BoardSN = source.BoardSN,
                 Title = source.Title,
                 Category = source.Category,

@@ -113,11 +113,11 @@ namespace ApplicationCore
         //public List<int> Go { get; set; }
 
         [JsonIgnore]
-        public virtual List<Board> Favorites { get; set; }
+        public virtual ICollection<Board> Favorites { get; set; } = new HashSet<Board>();
         [JsonIgnore]
-        public virtual List<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
         [JsonIgnore]
-        public virtual List<Artical> Articals { get; set; }
+        public virtual ICollection<Artical> Articals { get; set; } = new HashSet<Artical>();
 
     }
 }

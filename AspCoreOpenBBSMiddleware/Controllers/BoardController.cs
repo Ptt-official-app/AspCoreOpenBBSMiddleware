@@ -94,7 +94,7 @@ namespace AspCoreOpenBBSMiddleware.Controllers
             var articalList = from b in _boardRepository.Get()
                               where b.Id == id
                               select b.Articals.Where(
-                                  a=> (string.IsNullOrWhiteSpace(aid) || a.ArticalId.Contains(aid)));
+                                  a=> (string.IsNullOrWhiteSpace(aid) || a.Title.Contains(aid)));
             if (!articalList.Any()) return NoContent();
             return Ok(articalList);
         }
@@ -125,7 +125,7 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         {
             var authors = (from b in _boardRepository.Get()
                            where b.Id == bid
-                           select b.Articals.Select(a => string.IsNullOrWhiteSpace(uid) || a.Author.UserId.Contains(uid))
+                           select b.Articals.Select(a => string.IsNullOrWhiteSpace(uid) || a.Author.Name.Contains(uid))
                           )
                           .Distinct();
             if (!authors.Any()) return NoContent();

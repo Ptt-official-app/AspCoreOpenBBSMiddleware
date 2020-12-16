@@ -28,9 +28,6 @@ namespace ApplicationCore
         [JsonProperty("onlineCount")]
         public int OnlineCount { get; set; }
 
-        [JsonProperty("moderators")]
-        public virtual List<User> Moderators { get; set; }
-
         [JsonProperty("read")]
         public bool Read { get; set; }
 
@@ -76,6 +73,10 @@ namespace ApplicationCore
         [JsonIgnore]
         public bool IsPopular { get; set; }
 
-        public virtual List<Artical> Articals { get; set; }
+        [JsonProperty("moderators")]
+        public virtual ICollection<User> Moderators { get; set; } = new HashSet<User>();
+
+        [JsonIgnore]
+        public virtual ICollection<Artical> Articals { get; set; } = new HashSet<Artical>();
     }
 }

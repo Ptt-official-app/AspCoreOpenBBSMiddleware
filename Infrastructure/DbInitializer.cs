@@ -1,5 +1,6 @@
 ﻿using ApplicationCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Infrastructure
 {
@@ -14,7 +15,6 @@ namespace Infrastructure
             {
                 Id = 1,
                 Name = "sn-teemo",
-                UserId = "teemo",
                 NickName = "提摩",
                 RealName = "真 . 提摩",
                 NumberOfLoginDays = 1,
@@ -43,11 +43,11 @@ namespace Infrastructure
                 Mode = 1,
                 Alerts = 0,
             };
+            context.Users.Add(user_teemo);
             User user_okcool = new User
             {
                 Id = 2,
                 Name = "sn-okcool",
-                UserId = "okcool",
                 NickName = "okcool",
                 RealName = "真 . okcool",
                 NumberOfLoginDays = 1,
@@ -76,7 +76,7 @@ namespace Infrastructure
                 Mode = 1,
                 Alerts = 0,
             };
-            context.Users.Add(user_teemo);
+            context.Users.Add(user_okcool);
             context.SaveChanges();
             #endregion
             #region Artical
@@ -85,7 +85,6 @@ namespace Infrastructure
                 Id = 1,
                 BoardSN = "sn-undefined",
                 BoardId = "undefined",
-                ArticalId = "aid0",
                 AuthorSN = user_teemo.Name,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
@@ -106,7 +105,6 @@ namespace Infrastructure
                 Id = 2,
                 BoardSN = "sn-undefined???",
                 BoardId = "undefined???",
-                ArticalId = "aid2",
                 AuthorSN = user_teemo.Name,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
@@ -132,7 +130,6 @@ namespace Infrastructure
             {
                 Id = 1,
                 BoardSN = "sn-PttNewhand",
-                BoardId = "PttNewhand",
                 Title = "批踢踢新手客服中心… 〃非test板",
                 Flag = 1,
                 Type = 2,
@@ -200,6 +197,8 @@ namespace Infrastructure
             user_teemo.Articals = new List<Artical>() { artical1, artical2 };
             user_teemo.Favorites = new List<Board>() { board };
             user_teemo.Comments = new List<Comment>() { cmt1, cmt2 };
+            context.Users.Update(user_teemo);
+            context.SaveChanges();
         }
     }
 }

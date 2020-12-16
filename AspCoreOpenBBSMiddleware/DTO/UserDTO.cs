@@ -11,7 +11,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
         public string UserSN { get; set; }
 
         [JsonProperty("uid")]
-        public string UserId { get; set; }
+        public int UserId { get; set; }
     }
 
     public static class UserDTOExtension
@@ -22,7 +22,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
 
             return new UserDTO
             {
-                UserId = source.UserId,
+                UserId = source.Id,
                 UserSN = source.Name
             };
         }
