@@ -39,12 +39,15 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// </summary>
         /// <param name="uid">唯一性編號</param>
         [HttpGet("{uid}")]
-        public ActionResult<IEnumerable<User>> GetUser(int uid)
+        public ActionResult<User> GetUser(int uid)
         {
-            var result = from u in _userRepository.Get()
-                         where u.Id == uid
-                         select u;
-            return Ok(result);
+            var user = (from u in _userRepository.Get()
+                        where u.Id == uid
+                        select u)
+                       .SingleOrDefault();
+            if (null == user) return NotFound();
+
+            return Ok(user);
         }
 
         /// <summary>
@@ -54,9 +57,9 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         [HttpDelete("{uid}")]
         public IActionResult DeleteBoardById(int uid)
         {
-            User user = (from a in _userRepository.Get()
-                         where a.Id == uid
-                         select a)
+            User user = (from u in _userRepository.Get()
+                         where u.Id == uid
+                         select u)
                         .SingleOrDefault();
             if (null != user)
             {
@@ -71,12 +74,15 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// </summary>
         /// <param name="uid">唯一性編號</param>
         [HttpGet("{uid}/Comments")]
-        public ActionResult<IEnumerable<User>> GetUserComments(int uid)
+        public ActionResult<IEnumerable<Comment>> GetUserComments(int uid)
         {
-            var result = from u in _userRepository.Get()
-                         where u.Id == uid
-                         select null == u ? null : u.Comments;
-            return Ok(result);
+            var user = (from u in _userRepository.Get()
+                        where u.Id == uid
+                        select u)
+                       .SingleOrDefault();
+            if (null == user) return NotFound();
+
+            return Ok(user.Comments);
         }
 
         /// <summary>
@@ -86,10 +92,13 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         [HttpGet("{uid}/Favorites")]
         public ActionResult<IEnumerable<Board>> GetUserFavorites(int uid)
         {
-            var result = from u in _userRepository.Get()
-                         where u.Id == uid
-                         select null == u ? null : u.Favorites;
-            return Ok(result);
+            var user = (from u in _userRepository.Get()
+                        where u.Id == uid
+                        select u)
+                       .SingleOrDefault();
+            if (null == user) return NotFound();
+
+            return Ok(user.Favorites);
         }
 
         /// <summary>
@@ -99,10 +108,13 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         [HttpGet("{uid}/Articals")]
         public ActionResult<IEnumerable<Artical>> GetUserArticals(int uid)
         {
-            var result = from u in _userRepository.Get()
-                         where u.Id == uid 
-                         select null == u ? null : u.Articals;
-            return Ok(result);
+            var user = (from u in _userRepository.Get()
+                        where u.Id == uid
+                        select u)
+                       .SingleOrDefault();
+            if (null == user) return NotFound();
+
+            return Ok(user.Articals);
         }
     }
 }
