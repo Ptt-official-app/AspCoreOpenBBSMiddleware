@@ -1,6 +1,8 @@
 ﻿using ApplicationCore;
+using ApplicationCore.Helpers;
 using AspCoreOpenBBSMiddleware.Controllers.Base;
 using Infrastructure.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +11,26 @@ namespace AspCoreOpenBBSMiddleware.Controllers
 {
     public class UserController : BaseController
     {
+        private readonly JWTProvider _jwtHelper;
         private readonly UserRepository _userRepository;
-        public UserController(UserRepository userRepository)
+        public UserController(UserRepository userRepository, JWTProvider jwtHelper)
         {
             _userRepository = userRepository;
+            _jwtHelper = jwtHelper;
+        }
+
+        [AllowAnonymous]
+        [HttpPost("Register")]
+        public IActionResult Register([FromQuery] string user)
+        {
+            var token = _jwtHelper.GenerateToken(user);
+            return Ok(new { token });
+        }
+
+        [HttpGet("Claims")]
+        public IActionResult GetClaims()
+        {
+            return Ok(new { User.Identity.Name });
         }
 
         /// <summary>
