@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationCore
 {
-    public class Artical
+    public class Article
     {
         [Key]
         public int Id { get; set; }
 
         [JsonProperty("aid")]
-        public string ArticalId { get; set; }
+        public string ArticleId { get; set; }
 
         #region Board
         [JsonProperty("bsn")]

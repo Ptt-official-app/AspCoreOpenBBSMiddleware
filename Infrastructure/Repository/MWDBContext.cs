@@ -13,7 +13,7 @@ namespace Infrastructure.Repository
 
         public virtual DbSet<Board> Boards { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Artical> Articals { get; set; }
+        public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -40,11 +40,11 @@ namespace Infrastructure.Repository
             //    entity.Property(e => e.UserSN).HasMaxLength(50);
             //});
 
-            //modelBuilder.Entity<Artical>(entity =>
+            //modelBuilder.Entity<Article>(entity =>
             //{
             //    entity.HasKey(a => a.Id);
 
-            //    entity.Property(a => a.ArticalId)
+            //    entity.Property(a => a.ArticleId)
             //        .IsRequired()
             //        .HasMaxLength(30);
             //});

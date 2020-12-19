@@ -8,12 +8,12 @@ using System.Linq;
 
 namespace AspCoreOpenBBSMiddleware.Controllers
 {
-    public class ArticalController : BaseController
+    public class ArticleController : BaseController
     {
-        private readonly ArticalRepository _articalRepository;
-        public ArticalController(ArticalRepository articalRepository)
+        private readonly ArticleRepository _articleRepository;
+        public ArticleController(ArticleRepository articleRepository)
         {
-            _articalRepository = articalRepository;
+            _articleRepository = articleRepository;
         }
 
         /// <summary>
@@ -25,16 +25,16 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// <param name="ascending">升冪排序</param>
         /// <param name="max">max number of the returned posts, less or eqeal 1000</param>
         [HttpGet()]
-        public ActionResult<IEnumerable<Artical>> GetAll([FromQuery] bool isPopular = false,
+        public ActionResult<IEnumerable<Article>> GetAll([FromQuery] bool isPopular = false,
                                                          [FromQuery] long beforeTime = -1,
                                                          [FromQuery] string startAID = "",
                                                          [FromQuery] bool ascending = true,
                                                          [FromQuery] int max = 1000)
         {
-            var result = from a in _articalRepository.Get()
+            var result = from a in _articleRepository.Get()
                          where (beforeTime != -1 || a.PostTime > beforeTime)
                             && a.IsPopular == isPopular
-                            && (string.IsNullOrWhiteSpace(startAID) || a.ArticalId.StartsWith(startAID))
+                            && (string.IsNullOrWhiteSpace(startAID) || a.ArticleId.StartsWith(startAID))
                          select a;
             if (ascending)
             {
@@ -49,9 +49,9 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         }
 
         [HttpGet("{id}")]
-        public Artical GetArticalById(int id)
+        public Article GetArticleById(int id)
         {
-            var result = (from a in _articalRepository.Get()
+            var result = (from a in _articleRepository.Get()
                           where a.Id == id
                           select a)
                          .SingleOrDefault();
@@ -59,16 +59,16 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteArticalById(int id)
+        public IActionResult DeleteArticleById(int id)
         {
-            Artical artical = (from a in _articalRepository.Get()
+            Article article = (from a in _articleRepository.Get()
                                where a.Id == id
                                select a)
                               .SingleOrDefault();
-            if(null != artical)
+            if(null != article)
             {
-                _articalRepository.Delete(artical);
-                _articalRepository.Save();
+                _articleRepository.Delete(article);
+                _articleRepository.Save();
             }
             return Ok();
         }

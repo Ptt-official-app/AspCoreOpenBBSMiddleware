@@ -78,6 +78,6 @@ namespace ApplicationCore
         [JsonIgnore]
         public bool IsPopular { get; set; }
 
-        public virtual List<Artical> Articals { get; set; }
+        public virtual List<Article> Articles { get; set; }
     }
 }

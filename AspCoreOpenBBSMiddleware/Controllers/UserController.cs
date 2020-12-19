@@ -104,12 +104,12 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// 取得特定使用者文章
         /// </summary>
         /// <param name="uid">唯一性編號</param>
-        [HttpGet("{uid}/Articals")]
-        public ActionResult<IEnumerable<Artical>> GetUserArticals(int uid)
+        [HttpGet("{uid}/Articles")]
+        public ActionResult<IEnumerable<Article>> GetUserArticles(int uid)
         {
             var result = from u in _userRepository.Get()
                          where u.Id == uid 
-                         select null == u ? null : u.Articals;
+                         select null == u ? null : u.Articles;
             return Ok(result);
         }
     }

@@ -79,13 +79,13 @@ namespace Infrastructure.Repository
             context.Users.Add(user_teemo);
             context.SaveChanges();
             #endregion
-            #region Artical
-            Artical artical1 = new Artical
+            #region Article
+            Article article1 = new Article
             {
                 Id = 1,
                 BoardSN = "sn-undefined",
                 BoardId = "undefined",
-                ArticalId = "aid0",
+                ArticleId = "aid0",
                 AuthorSN = user_teemo.UserSN,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
@@ -101,12 +101,12 @@ namespace Infrastructure.Repository
                 NumberOfReader = 1,
                 NumberOfRecommend = -1000
             };
-            Artical artical2 = new Artical
+            Article article2 = new Article
             {
                 Id = 2,
                 BoardSN = "sn-undefined???",
                 BoardId = "undefined???",
-                ArticalId = "aid2",
+                ArticleId = "aid2",
                 AuthorSN = user_teemo.UserSN,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
@@ -123,8 +123,8 @@ namespace Infrastructure.Repository
                 NumberOfRecommend = -1000,
                 IsPopular = true
             };
-            context.Articals.Add(artical1);
-            context.Articals.Add(artical2);
+            context.Articles.Add(article1);
+            context.Articles.Add(article2);
             context.SaveChanges();
             #endregion
             #region Board
@@ -153,7 +153,7 @@ namespace Infrastructure.Repository
                 FastRecommendPause = 60,
                 VoteLimitBadpost = 15,
                 PostLimitBadpost = 13,
-                Articals = new List<Artical>() { artical1, artical2},
+                Articles = new List<Article>() { article1, article2},
                 IsPopular = true
             };
             context.Boards.Add(board);
@@ -197,7 +197,7 @@ namespace Infrastructure.Repository
             context.SaveChanges();
             #endregion
 
-            user_teemo.Articals = new List<Artical>() { artical1, artical2 };
+            user_teemo.Articles = new List<Article>() { article1, article2 };
             user_teemo.Favorites = new List<Board>() { board };
             user_teemo.Comments = new List<Comment>() { cmt1, cmt2 };
         }

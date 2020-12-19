@@ -120,7 +120,7 @@ namespace ApplicationCore
         [JsonIgnore]
         public virtual List<Comment> Comments { get; set; }
         [JsonIgnore]
-        public virtual List<Artical> Articals { get; set; }
+        public virtual List<Article> Articles { get; set; }
 
     }
 }

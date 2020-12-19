@@ -30,7 +30,7 @@ namespace AspCoreOpenBBSMiddleware
                         options.UseInMemoryDatabase(databaseName: "InMemoryDb")
 #endif
                         )
-                    .AddScoped<ArticalRepository>()
+                    .AddScoped<ArticleRepository>()
                     .AddScoped<BoardRepository>()
                     .AddScoped<UserRepository>()
                     .AddScoped<CommentRepository>();
@@ -79,8 +79,8 @@ namespace AspCoreOpenBBSMiddleware
             // Register the ReDoc UI
             app.UseReDoc(config =>
             {
-                // ¹w³] ReDoc ¸ô¥Ñ¬° /swagger¡A»P Swagger ¬Û¦P¡A©Ò¥H­n¿ù¶}¤~¯à¨âºØ³£¨Ï¥Î
-                // ³]©w ReDoc UI ªº¸ô¥Ñ (ºô§}¸ô®|) (¤@©w­n¥H / ±×½u¶}ÀY)
+                // ï¿½wï¿½] ReDoc ï¿½ï¿½ï¿½Ñ¬ï¿½ /swaggerï¿½Aï¿½P Swagger ï¿½Û¦Pï¿½Aï¿½Ò¥Hï¿½nï¿½ï¿½ï¿½}ï¿½~ï¿½ï¿½ï¿½Ø³ï¿½ï¿½Ï¥ï¿½
+                // ï¿½]ï¿½w ReDoc UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½}ï¿½ï¿½ï¿½|) (ï¿½@ï¿½wï¿½nï¿½H / ï¿½×½uï¿½}ï¿½Y)
                 config.Path = "/redoc";
             });
         }

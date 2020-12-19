@@ -89,17 +89,17 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// </summary>
         /// <param name="id">看板唯一性編號</param>
         /// <param name="aid">文章部分Id</param>
-        [HttpGet("{id}/Articals")]
-        public ActionResult<IEnumerable<Artical>> GetArticalsByBoardId(int id,
+        [HttpGet("{id}/Articles")]
+        public ActionResult<IEnumerable<Article>> GetArticlesByBoardId(int id,
                                                                        [FromQuery] string aid = "")
         {
 
-            var articalList = from b in _boardRepository.Get()
+            var articleList = from b in _boardRepository.Get()
                               where b.Id == id
-                              select b.Articals.Where(
-                                  a=> (string.IsNullOrWhiteSpace(aid) || a.ArticalId.Contains(aid)));
-            if (!articalList.Any()) return NoContent();
-            return Ok(articalList);
+                              select b.Articles.Where(
+                                  a=> (string.IsNullOrWhiteSpace(aid) || a.ArticleId.Contains(aid)));
+            if (!articleList.Any()) return NoContent();
+            return Ok(articleList);
         }
 
         /// <summary>
@@ -107,14 +107,14 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// </summary>
         /// <param name="bid">看板唯一性編號</param>
         /// <param name="aid">文章唯一性編號</param>
-        [HttpGet("{bid}/Articals/{aid}")]
-        public ActionResult<IEnumerable<Artical>> GetArticalByBoardId(int bid, int aid)
+        [HttpGet("{bid}/Articles/{aid}")]
+        public ActionResult<IEnumerable<Article>> GetArticleByBoardId(int bid, int aid)
         {
-            var articalList = (from b in _boardRepository.Get()
+            var articleList = (from b in _boardRepository.Get()
                                where b.Id == bid
-                               select b.Articals.Where(a=>a.Id == aid));
-            if (!articalList.Any()) return NoContent();
-            return Ok(articalList);
+                               select b.Articles.Where(a=>a.Id == aid));
+            if (!articleList.Any()) return NoContent();
+            return Ok(articleList);
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         {
             var authors = (from b in _boardRepository.Get()
                            where b.Id == bid
-                           select b.Articals.Select(a => string.IsNullOrWhiteSpace(uid) || a.Author.UserId.Contains(uid))
+                           select b.Articles.Select(a => string.IsNullOrWhiteSpace(uid) || a.Author.UserId.Contains(uid))
                           )
                           .Distinct();
             if (!authors.Any()) return NoContent();
@@ -145,7 +145,7 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         {
             var author = (from b in _boardRepository.Get()
                           where b.Id == bid
-                          select b.Articals
+                          select b.Articles
                                   .Where(a => a.Author.Id == uid)
                                   .Select(a => a.Author)
                          )
