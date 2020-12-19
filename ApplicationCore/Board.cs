@@ -77,6 +77,6 @@ namespace ApplicationCore
         public virtual ICollection<User> Moderators { get; set; } = new HashSet<User>();
 
         [JsonIgnore]
-        public virtual ICollection<Artical> Articals { get; set; } = new HashSet<Artical>();
+        public virtual ICollection<Article> Articles { get; set; } = new HashSet<Article>();
     }
 }

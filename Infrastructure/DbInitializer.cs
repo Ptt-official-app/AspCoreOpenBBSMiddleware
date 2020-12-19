@@ -79,8 +79,8 @@ namespace Infrastructure
             context.Users.Add(user_okcool);
             context.SaveChanges();
             #endregion
-            #region Artical
-            Artical artical1 = new Artical
+            #region Article
+            Article article1 = new Article
             {
                 Id = 1,
                 BoardSN = "sn-undefined",
@@ -100,7 +100,7 @@ namespace Infrastructure
                 NumberOfReader = 1,
                 NumberOfRecommend = -1000
             };
-            Artical artical2 = new Artical
+            Article article2 = new Article
             {
                 Id = 2,
                 BoardSN = "sn-undefined???",
@@ -121,8 +121,8 @@ namespace Infrastructure
                 NumberOfRecommend = -1000,
                 IsPopular = true
             };
-            context.Articals.Add(artical1);
-            context.Articals.Add(artical2);
+            context.Articles.Add(article1);
+            context.Articles.Add(article2);
             context.SaveChanges();
             #endregion
             #region Board
@@ -150,7 +150,7 @@ namespace Infrastructure
                 FastRecommendPause = 60,
                 VoteLimitBadpost = 15,
                 PostLimitBadpost = 13,
-                Articals = new List<Artical>() { artical1, artical2},
+                Articles = new List<Article>() { article1, article2},
                 IsPopular = true
             };
             context.Boards.Add(board);
@@ -194,7 +194,7 @@ namespace Infrastructure
             context.SaveChanges();
             #endregion
 
-            user_teemo.Articals = new List<Artical>() { artical1, artical2 };
+            user_teemo.Articles = new List<Article>() { article1, article2 };
             user_teemo.Favorites = new List<Board>() { board };
             user_teemo.Comments = new List<Comment>() { cmt1, cmt2 };
             context.Users.Update(user_teemo);

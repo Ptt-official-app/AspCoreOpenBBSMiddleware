@@ -39,7 +39,7 @@ namespace AspCoreOpenBBSMiddleware
                         options.UseInMemoryDatabase(databaseName: "InMemoryDb")
 #endif
                         )
-                    .AddScoped<ArticalRepository>()
+                    .AddScoped<ArticleRepository>()
                     .AddScoped<BoardRepository>()
                     .AddScoped<UserRepository>()
                     .AddScoped<CommentRepository>();

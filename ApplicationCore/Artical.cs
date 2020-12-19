@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ApplicationCore
 {
-    public class Artical
+    public class Article
     {
         [Key]
         [JsonProperty("aid")]
