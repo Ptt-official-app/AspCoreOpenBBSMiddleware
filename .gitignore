@@ -335,3 +335,4 @@ healthchecksdb
 # Server Log
 logs/
 !PCLOUD.Models/logs/
+/AspCoreOpenBBSMiddleware/AspCoreOpenBBSMiddleware.xml
