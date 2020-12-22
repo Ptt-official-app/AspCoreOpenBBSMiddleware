@@ -117,7 +117,7 @@ namespace ApplicationCore
         [JsonIgnore]
         public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
         [JsonIgnore]
-        public virtual ICollection<Artical> Articals { get; set; } = new HashSet<Artical>();
+        public virtual ICollection<Article> Articles { get; set; } = new HashSet<Article>();
 
     }
 }
