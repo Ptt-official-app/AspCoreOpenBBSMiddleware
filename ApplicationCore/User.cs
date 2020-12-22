@@ -7,14 +7,11 @@ namespace ApplicationCore
     public class User
     {
         [Key]
-        [JsonIgnore]
+        [JsonProperty("uid")]
         public int Id { get; set; }
 
         [JsonProperty("usn")]
-        public string UserSN { get; set; }
-
-        [JsonProperty("uid")]
-        public string UserId { get; set; }
+        public string Name { get; set; }
 
         [JsonProperty("nickname")]
         public string NickName { get; set; }
@@ -116,11 +113,11 @@ namespace ApplicationCore
         //public List<int> Go { get; set; }
 
         [JsonIgnore]
-        public virtual List<Board> Favorites { get; set; }
+        public virtual ICollection<Board> Favorites { get; set; } = new HashSet<Board>();
         [JsonIgnore]
-        public virtual List<Comment> Comments { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
         [JsonIgnore]
-        public virtual List<Artical> Articals { get; set; }
+        public virtual ICollection<Article> Articles { get; set; } = new HashSet<Article>();
 
     }
 }

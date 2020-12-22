@@ -1,3 +1,4 @@
+using Infrastructure;
 using Infrastructure.Repository;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,9 +14,9 @@ namespace AspCoreOpenBBSMiddleware
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-#if DEBUG
+//#if DEBUG
             CreateDbIfNotExists(host);
-#endif
+//#endif
 
             host.Run();
         }

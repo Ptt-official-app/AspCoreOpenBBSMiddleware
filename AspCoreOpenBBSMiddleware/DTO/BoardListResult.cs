@@ -9,7 +9,7 @@ namespace AspCoreOpenBBSMiddleware.DTO
         public IEnumerable<BoardDTO> List { get; set; }
 
         [JsonProperty("nextBID")]
-        public virtual string NextBoardID => null == Next ? "" : Next.BoardId;
+        public virtual int? NextBoardID => Next?.BoardId;
 
         [JsonIgnore]
         public BoardDTO Next { get; set; }

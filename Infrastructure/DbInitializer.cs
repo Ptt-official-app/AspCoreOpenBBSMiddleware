@@ -1,7 +1,8 @@
 ﻿using ApplicationCore;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Infrastructure.Repository
+namespace Infrastructure
 {
     public static class DbInitializer
     {
@@ -13,8 +14,7 @@ namespace Infrastructure.Repository
             User user_teemo = new User
             {
                 Id = 1,
-                UserSN = "sn-teemo",
-                UserId = "teemo",
+                Name = "sn-teemo",
                 NickName = "提摩",
                 RealName = "真 . 提摩",
                 NumberOfLoginDays = 1,
@@ -43,11 +43,11 @@ namespace Infrastructure.Repository
                 Mode = 1,
                 Alerts = 0,
             };
+            context.Users.Add(user_teemo);
             User user_okcool = new User
             {
                 Id = 2,
-                UserSN = "sn-okcool",
-                UserId = "okcool",
+                Name = "sn-okcool",
                 NickName = "okcool",
                 RealName = "真 . okcool",
                 NumberOfLoginDays = 1,
@@ -76,17 +76,16 @@ namespace Infrastructure.Repository
                 Mode = 1,
                 Alerts = 0,
             };
-            context.Users.Add(user_teemo);
+            context.Users.Add(user_okcool);
             context.SaveChanges();
             #endregion
-            #region Artical
-            Artical artical1 = new Artical
+            #region Article
+            Article article1 = new Article
             {
                 Id = 1,
                 BoardSN = "sn-undefined",
                 BoardId = "undefined",
-                ArticalId = "aid0",
-                AuthorSN = user_teemo.UserSN,
+                AuthorSN = user_teemo.Name,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
                 PostTime = 1234567891,
@@ -101,13 +100,12 @@ namespace Infrastructure.Repository
                 NumberOfReader = 1,
                 NumberOfRecommend = -1000
             };
-            Artical artical2 = new Artical
+            Article article2 = new Article
             {
                 Id = 2,
                 BoardSN = "sn-undefined???",
                 BoardId = "undefined???",
-                ArticalId = "aid2",
-                AuthorSN = user_teemo.UserSN,
+                AuthorSN = user_teemo.Name,
                 AuthorId = user_teemo.Id,
                 Author = user_teemo,
                 PostTime = 1234567891,
@@ -123,8 +121,8 @@ namespace Infrastructure.Repository
                 NumberOfRecommend = -1000,
                 IsPopular = true
             };
-            context.Articals.Add(artical1);
-            context.Articals.Add(artical2);
+            context.Articles.Add(article1);
+            context.Articles.Add(article2);
             context.SaveChanges();
             #endregion
             #region Board
@@ -132,7 +130,6 @@ namespace Infrastructure.Repository
             {
                 Id = 1,
                 BoardSN = "sn-PttNewhand",
-                BoardId = "PttNewhand",
                 Title = "批踢踢新手客服中心… 〃非test板",
                 Flag = 1,
                 Type = 2,
@@ -153,7 +150,7 @@ namespace Infrastructure.Repository
                 FastRecommendPause = 60,
                 VoteLimitBadpost = 15,
                 PostLimitBadpost = 13,
-                Articals = new List<Artical>() { artical1, artical2},
+                Articles = new List<Article>() { article1, article2},
                 IsPopular = true
             };
             context.Boards.Add(board);
@@ -167,7 +164,7 @@ namespace Infrastructure.Repository
                 BoardSN = board.BoardSN,
                 BoardId = board.Id,
                 Author = user_teemo,
-                AutherSN = user_teemo.UserSN,
+                AutherSN = user_teemo.Name,
                 AutherId = user_teemo.Id,
                 CommentSN = "sn-cid3",
                 CommentId = "cid3",
@@ -184,7 +181,7 @@ namespace Infrastructure.Repository
                 BoardSN = board.BoardSN,
                 BoardId = board.Id,
                 Author = user_teemo,
-                AutherSN = user_teemo.UserSN,
+                AutherSN = user_teemo.Name,
                 AutherId = user_teemo.Id,
                 CommentSN = "sn-cid3",
                 CommentId = "cid3",
@@ -197,9 +194,11 @@ namespace Infrastructure.Repository
             context.SaveChanges();
             #endregion
 
-            user_teemo.Articals = new List<Artical>() { artical1, artical2 };
+            user_teemo.Articles = new List<Article>() { article1, article2 };
             user_teemo.Favorites = new List<Board>() { board };
             user_teemo.Comments = new List<Comment>() { cmt1, cmt2 };
+            context.Users.Update(user_teemo);
+            context.SaveChanges();
         }
     }
 }

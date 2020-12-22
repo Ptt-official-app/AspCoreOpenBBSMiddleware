@@ -7,13 +7,11 @@ namespace ApplicationCore
     public class Board
     {
         [Key]
+        [JsonProperty("bid")]
         public int Id { get; set; }
 
         [JsonProperty("bsn")]
         public string BoardSN { get; set; }
-
-        [JsonProperty("bid")]
-        public string BoardId { get; set; }
 
         [JsonProperty("title")]
         public string Title { get; set; }
@@ -29,9 +27,6 @@ namespace ApplicationCore
 
         [JsonProperty("onlineCount")]
         public int OnlineCount { get; set; }
-
-        [JsonProperty("moderators")]
-        public virtual List<User> Moderators { get; set; }
 
         [JsonProperty("read")]
         public bool Read { get; set; }
@@ -78,6 +73,10 @@ namespace ApplicationCore
         [JsonIgnore]
         public bool IsPopular { get; set; }
 
-        public virtual List<Artical> Articals { get; set; }
+        [JsonProperty("moderators")]
+        public virtual ICollection<User> Moderators { get; set; } = new HashSet<User>();
+
+        [JsonIgnore]
+        public virtual ICollection<Article> Articles { get; set; } = new HashSet<Article>();
     }
 }
