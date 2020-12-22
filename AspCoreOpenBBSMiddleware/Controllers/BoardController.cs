@@ -22,22 +22,22 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// </summary>
         /// <param name="isPopular">是否為熱門文章；預設為 否</param>
         /// <param name="title">部分看板標題</param>
-        /// <param name="max">一次取回幾筆資料，最多1000</param>
+        /// <param name="limit">一次取回幾筆資料，最多1000</param>
         [HttpGet()]
         public ActionResult<BoardListResult> GetAll([FromQuery] bool isPopular = false,
                                                     [FromQuery] string title = "",
-                                                    [FromQuery] int max = 1000)
+                                                    [FromQuery] int limit = 1000)
         {
             var list = (from b in _boardRepository.Get()
                         where b.IsPopular == isPopular
                            && (string.IsNullOrWhiteSpace(title) || b.Title.Contains(title, StringComparison.CurrentCulture))
                         select b)
-                       .Take(max)
+                       .Take(limit)
                        .ToDTO();
             if (!list.Any()) return NoContent();
 
             var next = _boardRepository.Get()
-                                       .Skip(max)
+                                       .Skip(limit)
                                        .Take(1)
                                        .SingleOrDefault()
                                        .ToDTO();

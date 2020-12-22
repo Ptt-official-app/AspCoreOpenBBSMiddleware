@@ -38,18 +38,18 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// </summary>
         /// <param name="name">部分使用者名稱</param>
         /// <param name="desc">由新至舊排序</param>
-        /// <param name="max">一次取回幾筆資料，最多1000</param>
+        /// <param name="limit">一次取回幾筆資料，最多1000</param>
         [HttpGet()]
         public ActionResult<IEnumerable<User>> GetAll([FromQuery] string name = "",
                                                       [FromQuery] bool desc = true,
-                                                      [FromQuery] int max = 1000)
+                                                      [FromQuery] int limit = 1000)
         {
             var result = from u in _userRepository.Get()
                          where (string.IsNullOrWhiteSpace(name) || u.Name.Contains(name))
                          select u;
             if (desc) result = result.OrderByDescending(a => a.LastLogin);
 
-            return Ok(result.Take(max));
+            return Ok(result.Take(limit));
         }
 
         /// <summary>

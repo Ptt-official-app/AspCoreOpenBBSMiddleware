@@ -20,18 +20,18 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// </summary>
         /// <param name="beforeTime">最晚發布時間</param>
         /// <param name="desc">由新至舊排序</param>
-        /// <param name="max">一次取回幾筆資料，最多1000</param>
+        /// <param name="limit">一次取回幾筆資料，最多1000</param>
         [HttpGet()]
         public ActionResult<IEnumerable<Comment>> GetAll([FromQuery] long beforeTime = -1,
                                                          [FromQuery] bool desc = true,
-                                                         [FromQuery] int max = 1000)
+                                                         [FromQuery] int limit = 1000)
         {
             var result = from c in _commentRepository.Get()
                          where beforeTime != -1 || c.PostTime > beforeTime
                          select c;
             if (desc) result = result.OrderByDescending(c => c.PostTime);
 
-            return Ok(result.Take(max));
+            return Ok(result.Take(limit));
         }
 
         /// <summary>

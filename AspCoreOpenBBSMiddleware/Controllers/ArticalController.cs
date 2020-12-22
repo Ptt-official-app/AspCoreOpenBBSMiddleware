@@ -23,13 +23,13 @@ namespace AspCoreOpenBBSMiddleware.Controllers
         /// <param name="beforeTime">最晚發布時間</param>
         /// <param name="title">部分文章標題</param>
         /// <param name="desc">由新至舊排序</param>
-        /// <param name="max">一次取回幾筆資料，最多1000</param>
+        /// <param name="limit">一次取回幾筆資料，最多1000</param>
         [HttpGet()]
         public ActionResult<IEnumerable<Article>> GetAll([FromQuery] bool isPopular = false,
                                                          [FromQuery] long beforeTime = -1,
                                                          [FromQuery] string title = "",
                                                          [FromQuery] bool desc = true,
-                                                         [FromQuery] int max = 1000)
+                                                         [FromQuery] int limit = 1000)
         {
             var result = from a in _articleRepository.Get()
                          where (beforeTime != -1 || a.PostTime > beforeTime)
@@ -38,7 +38,7 @@ namespace AspCoreOpenBBSMiddleware.Controllers
                          select a;
             if (desc) result = result.OrderByDescending(a => a.PostTime);
 
-            return Ok(result.Take(max));
+            return Ok(result.Take(limit));
         }
 
         [HttpGet("{id}")]
