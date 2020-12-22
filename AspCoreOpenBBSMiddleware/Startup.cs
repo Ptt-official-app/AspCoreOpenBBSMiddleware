@@ -33,11 +33,11 @@ namespace AspCoreOpenBBSMiddleware
                     .AddNewtonsoftJson();
 
             services.AddDbContext<MWDBContext>(options =>
-#if !DEBUG
-                        options.UseSqlServer(Configuration.GetConnectionString("Default"))
-#else
+//#if !DEBUG
+                        //options.UseSqlServer(Configuration.GetConnectionString("Default"))
+//#else
                         options.UseInMemoryDatabase(databaseName: "InMemoryDb")
-#endif
+//#endif
                         )
                     .AddScoped<ArticleRepository>()
                     .AddScoped<BoardRepository>()
